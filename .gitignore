@@ -34,3 +34,11 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Dataset ve gecici dosyalar
+*.zip
+deneme/
+train/
+valid/
+test/
+data.yaml
