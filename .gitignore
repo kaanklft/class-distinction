@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+
+# YOLO / Ultralytics
+runs/
+*.cache
+*.pt
+*.onnx
+*.engine
+
+# Dataset (genellikle çok büyük, repoya konmaz)
+train/
+valid/
+test/
+data.yaml
+
+# Streamlit
+.streamlit/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
