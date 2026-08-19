@@ -42,3 +42,10 @@ train/
 valid/
 test/
 data.yaml
+
+# Gercek dataset klasoru
+animals/
+
+# Ilgisiz dosyalar
+sonuc_grafigi.png
+sonuc_grafigi_warmup.png
