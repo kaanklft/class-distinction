@@ -1,78 +1,77 @@
-# 🐾 Class-Ayrim — YOLOv8 ile Görsel Sınıflandırma
+# 🐾 Class-Distinction — Image Classification with YOLOv8
 
-YOLOv8 sınıflandırma modeli kullanılarak eğitilen, Streamlit tabanlı bir arayüzle
-test edilebilen ve isteğe bağlı olarak masaüstü uygulaması olarak çalıştırılabilen
-bir görsel sınıflandırma projesi.
+An image classification project trained with a YOLOv8 classification model,
+testable through a Streamlit-based interface, and optionally runnable as a
+desktop application.
 
-Veri seti [Roboflow Universe](https://universe.roboflow.com/ali-kaan/class-ayrim)
-üzerinden alınmıştır.
+The dataset comes from [Roboflow Universe](https://universe.roboflow.com/ali-kaan/class-ayrim).
 
-## 📁 Proje Yapısı
+## 📁 Project Structure
 
 ```
-class-ayrim/
-├── main.py              # Modeli eğitmek için kullanılır (YOLOv8-cls)
-├── test.py               # Streamlit web arayüzü (görsel yükle, tahmin al)
-├── app.py                # test.py'yi masaüstü penceresinde açan sarmalayıcı (pywebview)
-├── requirements.txt       # Gerekli Python paketleri
+class-distinction/
+├── main.py                # Used to train the model (YOLOv8-cls)
+├── test.py                # Streamlit web interface (upload an image, get a prediction)
+├── app.py                 # Wrapper that opens test.py in a desktop window (pywebview)
+├── requirements.txt       # Required Python packages
 ├── docs/
-│   ├── DATASET.md         # Veri seti kaynağı ve lisansı
-│   └── ROBOFLOW_EXPORT.md # Roboflow export detayları
+│   ├── DATASET.md         # Dataset source and license
+│   └── ROBOFLOW_EXPORT.md # Roboflow export details
 └── .gitignore
 ```
 
-## ⚙️ Kurulum
+## ⚙️ Setup
 
 ```bash
-git clone https://github.com/<kullanici-adi>/class-ayrim.git
-cd class-ayrim
+git clone https://github.com/kaanklft/class-distinction.git
+cd class-distinction
 python -m venv venv
 source venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## 📦 Veri Seti
+## 📦 Dataset
 
-Bu repo veri setini içermez (boyut nedeniyle). Eğitim yapmak için:
+This repo does not include the dataset (due to its size). To train the model:
 
-1. [Roboflow Universe - class-ayrim](https://universe.roboflow.com/ali-kaan/class-ayrim) sayfasından veri setini indirin (klasör formatında export edin).
-2. İndirilen `train/`, `valid/` klasörlerini proje kök dizinine yerleştirin.
+1. Download the dataset from [Roboflow Universe - class-ayrim](https://universe.roboflow.com/ali-kaan/class-ayrim) (export in folder format).
+2. Place the downloaded class folders (e.g. `animals/cat`, `animals/dog`, ...) in the project root.
 
-Detaylar için `docs/DATASET.md` ve `docs/ROBOFLOW_EXPORT.md` dosyalarına bakabilirsiniz.
+See `docs/DATASET.md` and `docs/ROBOFLOW_EXPORT.md` for details.
 
-## 🏋️ Modeli Eğitme
+## 🏋️ Training the Model
 
 ```bash
 python main.py
 ```
 
-`main.py`, `yolov8n-cls.pt` önceden eğitilmiş ağırlığını başlangıç noktası olarak
-kullanır (ilk çalıştırmada Ultralytics tarafından otomatik indirilir) ve eğitim
-sonuçlarını `runs/classify/` altına kaydeder.
+`main.py` uses the pretrained `yolov8n-cls.pt` weights as a starting point
+(automatically downloaded by Ultralytics on first run) and saves training
+results under `runs/classify/`.
 
-> **Not:** `device=0` parametresi GPU kullanımı içindir. GPU'nuz yoksa bu satırı
-> kaldırın veya `device='cpu'` olarak değiştirin.
+> **Note:** the `device=0` parameter is for GPU usage. If you don't have a GPU,
+> remove this line or change it to `device='cpu'`.
 
-## 🖥️ Web Arayüzünde Test Etme
+## 🖥️ Testing with the Web Interface
 
-Eğitim tamamlandıktan sonra en iyi ağırlık dosyası `runs/classify/train*/weights/best.pt`
-altında oluşur. `test.py` içindeki `model_path` değişkenini kendi klasör adınıza göre
-güncelleyin, ardından:
+Once training finishes, the best weights file is created under
+`runs/classify/train*/weights/best.pt`. Update the `model_path` variable in
+`test.py` to match your own folder name, then run:
 
 ```bash
 streamlit run test.py
 ```
 
-## 🖱️ Masaüstü Uygulaması Olarak Çalıştırma
+## 🖱️ Running as a Desktop App
 
 ```bash
 python app.py
 ```
 
-Bu komut, Streamlit sunucusunu arka planda başlatıp `pywebview` ile masaüstü
-penceresinde açar.
+This starts the Streamlit server in the background and opens it in a desktop
+window using `pywebview`.
 
-## 📄 Lisans
+## 📄 License
 
-Kod: MIT License (isterseniz değiştirebilirsiniz).
-Veri seti: CC BY 4.0 — bkz. `docs/DATASET.md`.
+Code: MIT License (feel free to change this).
+Dataset: CC BY 4.0 — see `docs/DATASET.md`.

@@ -3,17 +3,17 @@ import subprocess
 import time
 import sys
 
-# 1. Arka planda Streamlit uygulamasını başlat
+# 1. Start the Streamlit app in the background
 process = subprocess.Popen([sys.executable, "-m", "streamlit", "run", "test.py", "--server.headless=true"])
 
-# Streamlit'in ayağa kalkması için 2-3 saniye bekle
+# Wait 2-3 seconds for Streamlit to spin up
 time.sleep(3)
 
-# 2. Masaüstü Penceresini Oluştur
-window = webview.create_window('Hayvan Sınıflandırma Paneli', 'http://localhost:8501', width=1200, height=800)
+# 2. Create the desktop window
+window = webview.create_window('Animal Classification Panel', 'http://localhost:8501', width=1200, height=800)
 
-# 3. Pencereyi Başlat
+# 3. Start the window
 webview.start()
 
-# 4. Pencere kapatıldığında arka plandaki Streamlit sürecini de sonlandır
+# 4. Kill the background Streamlit process when the window is closed
 process.kill()

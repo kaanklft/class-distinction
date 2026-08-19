@@ -2,18 +2,18 @@ import os
 from ultralytics import YOLO
 
 if __name__ == '__main__':
-    # Mevcut çalışma dizinini tam yol olarak alıyoruz
+    # Get the current working directory as an absolute path
     dataset_path = os.path.abspath('.')
 
-    # YOLOv8 Sınıflandırma modelini yüklüyoruz
+    # Load the YOLOv8 classification model
     model = YOLO('yolov8n-cls.pt')
 
-    # Eğitimi başlatıyoruz
+    # Start training
     results = model.train(
-        data=dataset_path,  # Tam dosya yolunu vererek dizin karışıklığını önlüyoruz
-        epochs=50, #epochs nedir = 50, # tur sayısı
-        imgsz=224, #imgsz = 224, # Görüntü boyutu 224x224 olarak ayarlanıyor
-        batch=32, #batch nedir = 32, paketleme boyutu 32
-        workers=4, #workers nedir = 4, # 
-        device=0            # GPU hazır olduğu için 0 olarak kalabilir
+        data=dataset_path,  # Pass the absolute path to avoid directory confusion
+        epochs=50,          # number of training epochs
+        imgsz=224,          # images are resized to 224x224
+        batch=32,            # batch size
+        workers=4,           # number of dataloader worker threads
+        device=0              # GPU is available, so this stays 0
     )

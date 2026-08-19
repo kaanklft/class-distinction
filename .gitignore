@@ -15,11 +15,18 @@ runs/
 *.onnx
 *.engine
 
-# Dataset (genellikle çok büyük, repoya konmaz)
+# Dataset (usually too large for the repo)
+animals/
 train/
 valid/
 test/
 data.yaml
+*.zip
+
+# Unrelated experiment files
+deneme/
+sonuc_grafigi.png
+sonuc_grafigi_warmup.png
 
 # Streamlit
 .streamlit/
@@ -34,18 +41,3 @@ Thumbs.db
 
 # Logs
 *.log
-
-# Dataset ve gecici dosyalar
-*.zip
-deneme/
-train/
-valid/
-test/
-data.yaml
-
-# Gercek dataset klasoru
-animals/
-
-# Ilgisiz dosyalar
-sonuc_grafigi.png
-sonuc_grafigi_warmup.png
